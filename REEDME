@@ -1,0 +1,99 @@
+
+# 🚗 Arduino Rover with Bluetooth Control & MQ135 Sensor
+
+## 📌 Overview
+
+This project is a **Bluetooth-controlled rover** built using **Arduino** and **MIT App Inventor**.
+It allows users to:
+
+* Control the rover’s movement (Forward, Backward, Left, Right, Stop).
+* Monitor **air quality** using the **MQ135 sensor** in real time, displayed inside the Android app.
+
+The Android app is designed in **MIT App Inventor** and communicates with Arduino through the **HC-05 Bluetooth module**.
+
+---
+
+## 🛠️ Features
+
+* **Rover Movement:**
+
+  * `F` → Forward
+  * `B` → Backward
+  * `L` → Left
+  * `R` → Right
+  * `S` → Stop
+
+* **Air Quality Monitoring:**
+
+  * MQ135 sensor readings are sent from Arduino to the Android app.
+  * Displayed under **Gas Status** label.
+
+---
+
+## 🔧 Hardware Requirements
+
+* Arduino Uno / Nano / Mega
+* L293D / L298N Motor Driver
+* 4 DC Motors with wheels (chassis)
+* HC-05 / HC-06 Bluetooth Module
+* MQ135 Gas/Air Quality Sensor
+* Power supply (battery pack)
+* Jumper wires
+
+---
+
+## 📜 Pin Configuration
+
+| Component        | Arduino Pin | Notes                  |
+| ---------------- | ----------- | ---------------------- |
+| Motor Driver IN1 | 12          | Motor A                |
+| Motor Driver IN2 | 11          | Motor A                |
+| Motor Driver IN3 | 10          | Motor B                |
+| Motor Driver IN4 | 9           | Motor B                |
+| Bluetooth RX     | 4           | Connect to TX of HC-05 |
+| Bluetooth TX     | 5           | Connect to RX of HC-05 |
+| MQ135 Sensor     | A1          | Analog value read      |
+
+---
+
+## 📱 Android App (MIT App Inventor)
+
+### 📌 UI Layout
+
+<img src="/images/app-ui.png" alt="App UI" width="300"/>  
+
+### 📌 Block Logic
+
+<img src="/images/app-blocks.png" alt="App Inventor Blocks" width="600"/>  
+
+* Connect to HC-05 via **ListPicker**.
+* Send single-letter commands (`F`, `B`, `L`, `R`, `S`).
+* Receive MQ135 data periodically using a **Clock Timer**.
+
+---
+
+## 🖥️ Arduino Code Behavior
+
+* Continuously reads **MQ135 values** and sends them via Bluetooth.
+* Listens for commands from the Android app.
+* Executes rover movement based on received command.
+
+---
+
+## 📲 Usage Instructions
+
+1. Upload Arduino code to the board.
+2. Wire components as per the pin configuration.
+3. Open the Android app → Tap **Show Devices** → Connect to **HC-05** (default PIN: `1234` or `0000`).
+4. Use buttons to move the rover.
+5. View real-time **air quality values** under **Gas Status**.
+
+---
+
+## ⚠️ Notes
+
+* MQ135 requires **burn-in (24–48 hrs)** for stable readings.
+* Use **external power** for motors.
+* Adjust motor polarity if movement is reversed. 
+
+
